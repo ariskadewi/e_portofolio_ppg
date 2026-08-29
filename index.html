@@ -1,203 +1,524 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portofolio Digital Calon Guru PPG - Ni Kadek Ariska Dewi, Program Pendidikan Informatika">
-    <title>Portofolio PPG - Ni Kadek Ariska Dewi</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Portofolio Digital PPG - Ni Kadek Ariska Dewi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Skema Ungu Kemerahan Kalem (Muted Plum & Dusty Berry)
+                        plum: {
+                            50: '#fdf4f7',
+                            100: '#fbe8ef',
+                            200: '#f8d4e2',
+                            300: '#f2b1cb',
+                            400: '#e782aa',
+                            500: '#d75a89',
+                            600: '#be3c6f',
+                            700: '#9e2d57',
+                            800: '#83284a',
+                            900: '#6e2641',
+                            950: '#431124',
+                        },
+                        bgSoft: '#faf5f7',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-graduation-cap"></i> PPG Portfolio
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#visi-misi" class="nav-link">Visi & Misi</a>
-                <a href="#refleksi-sem1" class="nav-link">Semester 1</a>
-                <a href="#refleksi-sem2" class="nav-link">Semester 2</a>
-                <a href="#artefak" class="nav-link">Artefak</a>
-                <a href="#kontak" class="nav-link">Kontak</a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<body class="bg-bgSoft text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Home Section -->
-    <section id="home" class="home-section">
-        <div class="home-container">
-            <div class="home-content">
-                <img src="assets/profile.jpg" alt="Ni Kadek Ariska Dewi" class="profile-img">
-                <h1 class="name">Ni Kadek Ariska Dewi</h1>
-                <p class="program">Program Pendidikan Profesi Guru (PPG) Calon Guru</p>
-                <p class="bidang">Bidang Studi: Pendidikan Informatika</p>
-                <p class="tagline">Membimbing siswa tumbuh menjadi manusia merdeka berkarakter Pancasila</p>
-                <div class="cta-buttons">
-                    <a href="#visi-misi" class="btn btn-primary">Pelajari Visi Saya</a>
-                    <a href="#refleksi-sem1" class="btn btn-secondary">Lihat Refleksi</a>
+    <!-- NAVBAR HEADER -->
+    <header class="bg-white/85 backdrop-blur-md border-b border-plum-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Brand / Logo -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl font-black tracking-tight text-plum-900">•Ariska.</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-1">
+                    <button onclick="switchTab('visi-misi')" id="nav-visi-misi" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all text-plum-900 bg-plum-100/80 border border-plum-200 shadow-sm">
+                        Profil & Visi Aksi
+                    </button>
+                    <button onclick="switchTab('sem-1')" id="nav-sem-1" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:text-plum-900 hover:bg-plum-50">
+                        Refleksi Semester 1
+                    </button>
+                    <button onclick="switchTab('sem-2')" id="nav-sem-2" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:text-plum-900 hover:bg-plum-50">
+                        Refleksi Semester 2
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 p-2 rounded-lg focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Visi & Misi Section -->
-    <section id="visi-misi" class="visi-misi-section">
-        <div class="container">
-            <h2 class="section-title">Visi, Misi & Tindakan Kongkrit</h2>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-plum-100 bg-white px-4 pt-2 pb-4 space-y-1">
+            <button onclick="switchTab('visi-misi'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg text-base font-semibold text-plum-900 bg-plum-100/80">
+                Profil & Visi Aksi
+            </button>
+            <button onclick="switchTab('sem-1'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-plum-50">
+                Refleksi Semester 1
+            </button>
+            <button onclick="switchTab('sem-2'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-plum-50">
+                Refleksi Semester 2
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- TAB 1: PROFIL MAHASISWA & VISI MISI AKSI -->
+        <div id="tab-visi-misi" class="tab-content space-y-12">
             
-            <div class="visi-cards">
-                <!-- Visi Pribadi untuk Pendidikan -->
-                <div class="card card-blue">
-                    <div class="card-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Visi Pribadi untuk Pendidikan Indonesia</h3>
-                    <p class="card-content">
-                        Menuntun siswa tumbuh menjadi manusia merdeka yang berkarakter Pancasila melalui ruang belajar yang suportif, adaptif, dan menyenangkan, serta mendorong murid untuk memahami pelajaran dengan gaya unik mereka sendiri (Deep Learning), sehingga mereka menguasai kecakapan hidup dan teknologi praktis yang benar-benar berguna untuk masa depan mereka.
+            <!-- 1. HERO SECTION (TATA LETAK ATAS LENGKAP DENGAN GRADASI UNGU KEMERAHAN KALEM) -->
+            <section class="grid md:grid-cols-12 gap-8 items-center bg-gradient-to-br from-white via-plum-50/60 to-plum-100/40 p-6 sm:p-10 rounded-3xl border border-plum-100/80 shadow-sm relative overflow-hidden">
+                <div class="md:col-span-7 space-y-6 z-10">
+                    <span class="inline-block px-3.5 py-1 bg-plum-100 text-plum-900 rounded-full text-xs font-bold tracking-wider uppercase border border-plum-200/50">
+                        PPG Calon Guru • Pendidikan Informatika
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Hi! I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-plum-900 via-plum-700 to-plum-500">Ni Kadek Ariska Dewi</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-700 font-medium">
+                        I am a <span class="text-plum-800 font-bold underline decoration-plum-300 decoration-2">Future Informatics Educator</span>
                     </p>
-                </div>
-
-                <!-- Visi Pribadi sebagai Guru Informatika -->
-                <div class="card card-green">
-                    <div class="card-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Visi Pribadi sebagai Calon Guru Informatika</h3>
-                    <p class="card-content">
-                        Menjadi pendidik yang mampu menciptakan ruang belajar Informatika yang suportif, inklusif, dan menyenangkan, di mana setiap siswa dapat menemukan serta mengasah potensi digital mereka dengan gaya uniknya sendiri (Deep Learning), sehingga melahirkan lulusan berkarakter Pancasila yang tangguh, mandiri, dan siap menggunakan teknologi sebagai bekal nyata untuk bertahan hidup serta berinovasi di masa depan.
+                    <p class="text-sm text-slate-600 leading-relaxed max-w-xl">
+                        Pendidik yang berfokus menciptakan ruang belajar Informatika suportif, adaptif, dan ramah anak melalui pendekatan Deep Learning dan penanaman Nilai-Nilai Pancasila.
                     </p>
-                </div>
-            </div>
-
-            <!-- Tindakan Kongkrit -->
-            <div class="tindakan-section">
-                <h3>Tindakan Kongkrit untuk Mencapai Visi</h3>
-                <div class="tindakan-list">
-                    <div class="tindakan-item">
-                        <div class="tindakan-number">1</div>
-                        <div class="tindakan-content">
-                            <h4>Menciptakan Ekosistem Kelas yang Aman Secara Psikologis</h4>
-                            <p><strong>Psychological Safety:</strong> Menormalisasi kesalahan teknis (seperti error program) sebagai proses kognitif alami. Menggunakan teknik scaffolding (bantuan bertahap) melalui pertanyaan pemantik tanpa memberikan hukuman akademis.</p>
-                        </div>
-                    </div>
-
-                    <div class="tindakan-item">
-                        <div class="tindakan-number">2</div>
-                        <div class="tindakan-content">
-                            <h4>Mengimplementasikan Pembelajaran Berdiferensiasi Berbasis Karakter & Minat</h4>
-                            <p>Melakukan asesmen diagnostik non-kognitif. Memberikan otonomi tugas (misal: penugasan fokus estetika visual/desain UI vs fokus logika/game sederhana).</p>
-                        </div>
-                    </div>
-
-                    <div class="tindakan-item">
-                        <div class="tindakan-number">3</div>
-                        <div class="tindakan-content">
-                            <h4>Menerapkan Pembelajaran Berbasis Proyek Autentik yang Kontekstual</h4>
-                            <p><strong>Project-Based Learning:</strong> Meminimalkan ceramah satu arah dan hafalan teoritis.</p>
-                        </div>
-                    </div>
-
-                    <div class="tindakan-item">
-                        <div class="tindakan-number">4</div>
-                        <div class="tindakan-content">
-                            <h4>Menumbuhkan Pola Pikir Bertumbuh Melalui Asesmen Formatif</h4>
-                            <p><strong>Growth Mindset:</strong> Menggeser fokus dari nilai akhir (sumatif) menjadi penghargaan terhadap proses, usaha, dan refleksi (formatif).</p>
-                        </div>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#about-section" class="px-6 py-3 bg-plum-800 hover:bg-plum-900 text-white rounded-xl font-semibold text-sm shadow-md transition-all">
+                            ABOUT ME
+                        </a>
+                        <button onclick="switchTab('sem-1')" class="px-6 py-3 bg-white hover:bg-plum-50 text-plum-800 border border-plum-200 rounded-xl font-semibold text-sm shadow-sm transition-all">
+                            REFLEKSI S1 & S2
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Refleksi Semester 1 Section -->
-    <section id="refleksi-sem1" class="refleksi-section">
-        <div class="container">
-            <h2 class="section-title">Refleksi Mata Kuliah Semester 1</h2>
-            <p class="section-subtitle">Pendidikan Informatika - Program PPG</p>
-            
-            <div class="courses-container" id="coursesSem1"></div>
-        </div>
-    </section>
-
-    <!-- Refleksi Semester 2 Section -->
-    <section id="refleksi-sem2" class="refleksi-section">
-        <div class="container">
-            <h2 class="section-title">Refleksi Mata Kuliah Semester 2</h2>
-            <p class="section-subtitle">Pendidikan Informatika - Program PPG</p>
-            
-            <div class="courses-container" id="coursesSem2"></div>
-        </div>
-    </section>
-
-    <!-- Artefak Section -->
-    <section id="artefak" class="artefak-section">
-        <div class="container">
-            <h2 class="section-title">Artefak & Karya Pembelajaran</h2>
-            <p class="section-subtitle">Hasil Pembelajaran dan Pengembangan Profesi</p>
-            
-            <div class="artefak-container" id="artefakContainer"></div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="kontak" class="kontak-section">
-        <div class="container">
-            <h2 class="section-title">Hubungi Saya</h2>
-            <div class="kontak-content">
-                <div class="kontak-info">
-                    <div class="kontak-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:ariskadewi@example.com">ariskadewi@example.com</a></p>
-                        </div>
+                <!-- Foto Banner Sisi Kanan -->
+                <div class="md:col-span-5 flex justify-center z-10">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border-4 border-white shadow-xl bg-gradient-to-tr from-plum-900 via-plum-700 to-plum-400 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Ni Kadek Ariska Dewi" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
                     </div>
-                    <div class="kontak-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Telepon</h4>
-                            <p>+62 812 3456 7890</p>
-                        </div>
+                </div>
+            </section>
+
+            <!-- 2. ABOUT ME & MY SKILLS SECTION -->
+            <section id="about-section" class="grid md:grid-cols-12 gap-8 items-center bg-white p-6 sm:p-10 rounded-3xl border border-plum-100 shadow-sm">
+                
+                <!-- Sisi Kiri: Foto Profil + Floating Card My Skills -->
+                <div class="md:col-span-5 relative">
+                    <div class="w-full h-80 rounded-2xl overflow-hidden bg-slate-100 border border-plum-100 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Ariska Dewi Profile" class="w-full h-full object-cover">
                     </div>
-                    <div class="kontak-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Lokasi</h4>
-                            <p>Bali, Indonesia</p>
+                    
+                    <!-- Floating Card: MY SKILLS -->
+                    <div class="bg-gradient-to-br from-plum-900 to-plum-950 text-white p-5 rounded-2xl shadow-xl w-64 sm:w-72 absolute -bottom-6 -right-2 sm:-right-6 border border-plum-700/50">
+                        <h4 class="text-xs font-bold tracking-wider uppercase text-plum-200 mb-3 border-b border-plum-800 pb-1">
+                            MY SKILLS / KOMPETENSI
+                        </h4>
+                        <div class="space-y-2.5 text-xs">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Deep Learning Pedagogy</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-plum-950 rounded-full h-1.5">
+                                    <div class="bg-plum-300 h-1.5 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Pembelajaran Berdiferensiasi</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-plum-950 rounded-full h-1.5">
+                                    <div class="bg-plum-300 h-1.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Psychological Safety Class</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="w-full bg-plum-950 rounded-full h-1.5">
+                                    <div class="bg-plum-300 h-1.5 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Informatika & Pemrograman</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="w-full bg-plum-950 rounded-full h-1.5">
+                                    <div class="bg-plum-300 h-1.5 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <form class="kontak-form" id="kontakForm">
-                    <input type="text" placeholder="Nama Anda" required>
-                    <input type="email" placeholder="Email Anda" required>
-                    <textarea placeholder="Pesan Anda" rows="5" required></textarea>
-                    <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-                </form>
+
+                <!-- Sisi Kanan: ABOUT ME Teks Profiling -->
+                <div class="md:col-span-7 space-y-4 pt-8 md:pt-0 pl-0 md:pl-4">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                        ABOUT ME !
+                    </h2>
+                    <h3 class="text-base font-bold text-plum-800">
+                        Ni Kadek Ariska Dewi, S.Pd. — PPG Calon Guru Informatika
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Saya merupakan lulusan S1 Pendidikan Informatika yang saat ini menempuh Program Pendidikan Profesi Guru (PPG) Calon Guru[cite: 1]. Memiliki komitmen tinggi dalam mentransformasi pendidikan digital di Indonesia dengan berfokus pada pengembangan ruang belajar yang inklusif, aman secara psikologis (*Psychological Safety*), serta menghargai keunikan gaya belajar setiap peserta didik[cite: 1].
+                    </p>
+                    
+                    <!-- Detail Profiling Grid -->
+                    <div class="grid grid-cols-2 gap-3 pt-2 text-xs">
+                        <div class="p-3 bg-plum-50/60 rounded-xl border border-plum-100">
+                            <span class="text-slate-400 block mb-0.5">Program</span>
+                            <span class="font-bold text-slate-800">PPG Calon Guru</span>
+                        </div>
+                        <div class="p-3 bg-plum-50/60 rounded-xl border border-plum-100">
+                            <span class="text-slate-400 block mb-0.5">Bidang Studi</span>
+                            <span class="font-bold text-slate-800">Pendidikan Informatika</span>
+                        </div>
+                        <div class="p-3 bg-plum-50/60 rounded-xl border border-plum-100">
+                            <span class="text-slate-400 block mb-0.5">Pendidikan Terakhir</span>
+                            <span class="font-bold text-slate-800">S1 Pendidikan Informatika</span>
+                        </div>
+                        <div class="p-3 bg-plum-50/60 rounded-xl border border-plum-100">
+                            <span class="text-slate-400 block mb-0.5">Fokus Utama</span>
+                            <span class="font-bold text-slate-800">Deep Learning & Karakter</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex gap-3">
+                        <a href="#visi-misi-section" class="px-5 py-2.5 bg-plum-800 hover:bg-plum-900 text-white rounded-xl text-xs font-semibold transition-all shadow-sm">
+                            LIHAT VISI & MISI
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. VISI & MISI SECTION -->
+            <section id="visi-misi-section" class="space-y-6">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="text-2xl font-extrabold text-slate-900">Visi Pribadi Pendidikan</h2>
+                    <p class="text-xs text-slate-500 mt-1">Panduan Filosofis dalam Menjalankan Peran Pendidik</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Visi Pendidikan Indonesia -->
+                    <div class="bg-white p-6 rounded-2xl border border-plum-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="p-3 bg-plum-50 text-plum-800 rounded-xl border border-plum-100">
+                                <i data-lucide="globe" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg">Visi Pendidikan Indonesia</h3>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed italic bg-plum-50/40 p-4 rounded-xl border border-plum-100/60">
+                            "Menuntun siswa tumbuh menjadi manusia merdeka yang berkarakter Pancasila melalui ruang belajar yang suportif, adaptif, dan menyenangkan, serta mendorong murid untuk memahami pelajaran dengan gaya unik mereka sendiri (Deep Learning), sehingga mereka menguasai kecakapan hidup dan teknologi praktis yang benar-benar berguna untuk masa depan mereka."[cite: 1]
+                        </p>
+                    </div>
+
+                    <!-- Visi Calon Guru Informatika -->
+                    <div class="bg-white p-6 rounded-2xl border border-plum-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="p-3 bg-plum-100 text-plum-900 rounded-xl border border-plum-200">
+                                <i data-lucide="user-check" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-lg">Visi Pribadi Calon Guru</h3>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed italic bg-plum-50/40 p-4 rounded-xl border border-plum-100/60">
+                            "Menjadi pendidik yang mampu menciptakan ruang belajar Informatika yang suportif, inklusif, dan menyenangkan, di mana setiap siswa dapat menemukan serta mengasah potensi digital mereka dengan gaya uniknya sendiri (Deep Learning), sehingga melahirkan lulusan berkarakter Pancasila yang tangguh, mandiri, dan siap menggunakan teknologi sebagai bekal nyata untuk bertahan hidup serta berinovasi di masa depan."[cite: 1]
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. TINDAKAN KONGKRIT SECTION -->
+            <section class="bg-white p-6 sm:p-8 rounded-3xl border border-plum-100 shadow-sm space-y-6">
+                <div class="flex items-center space-x-3">
+                    <div class="p-3 bg-plum-50 text-plum-800 rounded-xl border border-plum-100">
+                        <i data-lucide="target" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-xl">Tindakan Kongkrit Mencapai Visi</h3>
+                        <p class="text-xs text-slate-500">Langkah Nyata Implementasi Pembelajaran</p>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="p-5 rounded-2xl border border-plum-100 bg-gradient-to-br from-white to-plum-50/30">
+                        <div class="flex items-start space-x-3">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-plum-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">1</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1 text-base">Psychological Safety di Kelas</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Menormalisasi kesalahan teknis (seperti error program) sebagai bagian alami dari proses kognitif[cite: 1]. Menerapkan teknik <i>scaffolding</i> lewat pertanyaan pemantik tanpa memberikan hukuman akademis[cite: 1].
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl border border-plum-100 bg-gradient-to-br from-white to-plum-50/30">
+                        <div class="flex items-start space-x-3">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-plum-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">2</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1 text-base">Pembelajaran Berdiferensiasi</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Melakukan asesmen diagnostik non-kognitif dan memberikan otonomi tugas berbasis minat (misal: pilihan karya berbasis desain visual/UI vs logika pemrograman/game sederhana)[cite: 1].
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl border border-plum-100 bg-gradient-to-br from-white to-plum-50/30">
+                        <div class="flex items-start space-x-3">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-plum-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">3</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1 text-base">Project-Based Learning (PjBL)</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Menerapkan pembelajaran berbasis proyek autentik yang kontekstual dengan meminimalkan metode ceramah satu arah dan hafalan teoritis[cite: 1].
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl border border-plum-100 bg-gradient-to-br from-white to-plum-50/30">
+                        <div class="flex items-start space-x-3">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-plum-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">4</span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1 text-base">Growth Mindset & Asesmen Formatif</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">
+                                    Menggeser fokus penilaian dari yang semula berorientasi hasil akhir (sumatif) menjadi penilaian formatif yang menghargai proses, usaha, dan refleksi peserta didik[cite: 1].
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: REFLEKSI SEMESTER 1 -->
+        <div id="tab-sem-1" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center border-b border-plum-100 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Refleksi Mata Kuliah - Semester 1</h2>
+                    <p class="text-slate-500 text-sm">Total: 6 Mata Kuliah</p>
+                </div>
+            </div>
+
+            <!-- Matkul 1: Filosofi Pendidikan -->
+            <div class="bg-white rounded-2xl border border-plum-100 shadow-sm overflow-hidden">
+                <div class="p-6 bg-gradient-to-r from-plum-50 via-white to-plum-100/50 border-b border-plum-100 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-semibold px-3 py-1 bg-white text-plum-900 rounded-full border border-plum-200">Mata Kuliah 1</span>
+                        <h3 class="text-lg font-bold text-slate-900 mt-2">Filosofi Pendidikan dan Pendidikan Nilai</h3>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <!-- Refleksi 4C Grid -->
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="p-4 rounded-xl bg-plum-50/50 border border-plum-100">
+                            <h4 class="font-bold text-plum-800 mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="link" class="w-4 h-4"></i> Connection
+                            </h4>
+                            <p class="text-slate-600 leading-relaxed">
+                                Mata kuliah ini menjadi fondasi filosofis dan moral dalam mewujudkan visi pribadi saya, yaitu menuntun siswa menjadi manusia merdeka berkarakter Pancasila melalui ruang belajar Informatika yang adaptif[cite: 2].
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-plum-100/40 border border-plum-200/60">
+                            <h4 class="font-bold text-plum-900 mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="alert-circle" class="w-4 h-4"></i> Challenge
+                            </h4>
+                            <p class="text-slate-600 leading-relaxed">
+                                Mengubah pandangan terhadap kesalahan teknis (error/bug) dari fixed mindset menjadi Growth Mindset & Psychological Safety, serta menyadari bahwa guru Informatika juga merupakan guru nilai[cite: 2].
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-plum-50/50 border border-plum-100">
+                            <h4 class="font-bold text-plum-800 mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="book-open" class="w-4 h-4"></i> Concept
+                            </h4>
+                            <p class="text-slate-600 leading-relaxed">
+                                Menuntun Kodrat & Menghamba pada Murid (KHD), Growth Mindset, Psychological Safety, Internalisasi Nilai Pancasila, Pembelajaran Berdiferensiasi, dan Kode Etik Profesi Guru[cite: 2].
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-plum-100/40 border border-plum-200/60">
+                            <h4 class="font-bold text-plum-900 mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="refresh-cw" class="w-4 h-4"></i> Change
+                            </h4>
+                            <p class="text-slate-600 leading-relaxed">
+                                Mengintegrasikan nilai Pancasila ke RPP/Modul Ajar, menerapkan scaffolding saat debugging, serta mengoptimalkan asesmen formatif[cite: 2].
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Uraian Ringkasan Refleksi -->
+                    <div class="border-t border-plum-100 pt-4">
+                        <h4 class="font-semibold text-slate-900 mb-2">Uraian Pengalaman Belajar & Refleksi:</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed bg-plum-50/30 p-4 rounded-xl italic border border-plum-100">
+                            "Mata kuliah Filosofi Pendidikan dan Pendidikan Nilai membuka wawasan mendalam saya mengenai pentingnya memperlakukan peserta didik sebagai manusia merdeka yang dituntun sesuai kodratnya[cite: 2]. Awalnya, saya menganggap bahwa penanaman nilai karakter merupakan tanggung jawab guru mata pelajaran tertentu saja dan cenderung melihat kegagalan teknis—seperti error pada kode pemrograman—sebagai indikator keterbatasan kemampuan murid (fixed mindset)[cite: 2]. Namun, setelah membedah studi kasus, menyusun manifesto growth mindset, dan menganalisis kode etik profesi, saya menyadari bahwa kesalahan teknis adalah proses kognitif alami yang membutuhkan scaffolding serta ekosistem kelas yang aman secara psikologis (psychological safety)[cite: 2]. Pembelajaran ini menegaskan peran saya sebagai calon guru Informatika untuk mengintegrasikan nilai-nilai luhur Pancasila ke dalam pembelajaran berbasis proyek yang kontekstual dan terdiferensiasi[cite: 2]. Melalui pendekatan deep learning, saya berkomitmen memfasilitasi setiap murid agar dapat mengasah potensi digital sesuai gaya unik mereka sendiri—baik di bidang logika maupun estetika visual—sehingga mereka tidak hanya menguasai teknologi praktis untuk masa depan, tetapi juga tumbuh menjadi pribadi yang mandiri, beretika, dan berkarakter Pancasila.”[cite: 2]
+                        </p>
+                    </div>
+
+                    <!-- Artefak -->
+                    <div class="border-t border-plum-100 pt-4">
+                        <h4 class="font-semibold text-slate-900 mb-2">Artefak Pembelajaran:</h4>
+                        <ul class="space-y-2 text-sm text-slate-600">
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="file-check-2" class="w-4 h-4 text-plum-700"></i>
+                                <span>Modul Ajar/RPP Berbasis Nilai dan Berdiferensiasi (Aksi Nyata Topik 3 & 4)[cite: 2]</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="file-check-2" class="w-4 h-4 text-plum-700"></i>
+                                <span>Manifesto Prinsip Growth Mindset Pribadi & Peta Konsep (Topik 2)[cite: 2]</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i data-lucide="file-check-2" class="w-4 h-4 text-plum-700"></i>
+                                <span>Laporan Analisis Kasus Pelanggaran Kode Etik Guru (Topik 4)[cite: 2]</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder Matkul 2 s.d 6 Semester 1 -->
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">Mata Kuliah 2</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Pemahaman tentang Peserta Didik dan Pembelajarannya</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">Mata Kuliah 3</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Prinsip Pengajaran dan Asesmen I</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">Mata Kuliah 4</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Pembelajaran Berdiferensiasi</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">Mata Kuliah 5</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Computational Thinking dalam Pendidikan</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">Mata Kuliah 6</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Praktik Pengalaman Lapangan (PPL) I</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Ni Kadek Ariska Dewi. Program PPG Pendidikan Informatika.</p>
-            <div class="social-links">
-                <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <!-- TAB 3: REFLEKSI SEMESTER 2 -->
+        <div id="tab-sem-2" class="tab-content hidden space-y-6">
+            <div class="flex justify-between items-center border-b border-plum-100 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Refleksi Mata Kuliah - Semester 2</h2>
+                    <p class="text-slate-500 text-sm">Total: 5 Mata Kuliah</p>
+                </div>
             </div>
+
+            <!-- Matkul 1 s.d 5 Semester 2 -->
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-plum-100 text-plum-900 rounded-md">Mata Kuliah 1</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Projek Kepemimpinan</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-plum-100 text-plum-900 rounded-md">Mata Kuliah 2</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Seminar PPG</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-plum-100 text-plum-900 rounded-md">Mata Kuliah 3</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Praktik Pengalaman Lapangan (PPL) II</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-plum-100 text-plum-900 rounded-md">Mata Kuliah 4</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Prinsip Pengajaran dan Asesmen II</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-plum-100 p-6">
+                <span class="text-xs font-semibold px-2.5 py-1 bg-plum-100 text-plum-900 rounded-md">Mata Kuliah 5</span>
+                <h3 class="text-lg font-bold text-slate-900 mt-1 mb-2">Pembelajaran Tanggap Budaya (Culturally Responsive Teaching)</h3>
+                <p class="text-sm text-slate-400 italic">[Sediakan lembar refleksi 4C & artefak untuk mata kuliah ini]</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-plum-100 mt-auto py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500">
+            <p>© 2026 Ni Kadek Ariska Dewi — Portofolio Digital PPG Pendidikan Informatika.</p>
         </div>
     </footer>
 
-    <script src="js/data.js"></script>
-    <script src="js/script.js"></script>
+    <!-- JAVASCRIPT FOR TABS AND INTERACTION -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Switch Tab Function
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-plum-900', 'bg-plum-100/80', 'border', 'border-plum-200', 'shadow-sm', 'font-semibold');
+                btn.classList.add('text-slate-600', 'font-medium');
+            });
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            const activeNav = document.getElementById('nav-' + tabId);
+            if(activeNav) {
+                activeNav.classList.add('text-plum-900', 'bg-plum-100/80', 'border', 'border-plum-200', 'shadow-sm', 'font-semibold');
+                activeNav.classList.remove('text-slate-600', 'font-medium');
+            }
+        }
+
+        // Toggle Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            toggleMobileMenu();
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
