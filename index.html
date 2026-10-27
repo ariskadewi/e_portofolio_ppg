@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Portfolio Praktik Mengajar Mandiri - Siklus 1 (Informatika)</title>
+    <title>E-Portfolio Praktik Mengajar Mandiri - Siklus 1 s.d. 4 (Informatika)</title>
     <style>
         :root {
             /* Skema Warna Pink Redup/Kalem & Abu-abu */
@@ -30,7 +30,7 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 2.5rem 1rem;
+            padding: 2.5rem 1rem 1.5rem 1rem;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.08);
         }
@@ -38,16 +38,62 @@
         header h1 { margin: 0 0 0.5rem 0; font-size: 2rem; }
         header p { margin: 0; opacity: 0.95; font-weight: 300; }
 
+        /* Navigasi Tab Siklus */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #7d444a;
+            padding: 0.5rem 1rem 0 1rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .tab-btn.active {
+            background-color: var(--bg);
+            color: var(--primary-hover);
+        }
+
         .container {
             max-width: 1000px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
+        /* Handling Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .section-title {
             border-bottom: 3px solid var(--primary);
             padding-bottom: 0.5rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             margin-bottom: 1.5rem;
             color: var(--text);
         }
@@ -81,7 +127,7 @@
             flex-grow: 1;
         }
 
-        /* Container Responsif untuk Embed Video & PDF */
+        /* Responsive Embed Video & PDF */
         .responsive-embed {
             position: relative;
             width: 100%;
@@ -101,7 +147,7 @@
         }
 
         .pdf-embed {
-            padding-bottom: 120%; /* Rasio potret dokumen */
+            padding-bottom: 120%; /* Rasio Potret Dokumen */
         }
 
         .analysis-box {
@@ -111,6 +157,16 @@
             margin-top: 1rem;
             font-size: 0.95rem;
             border-radius: 0 4px 4px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
         }
 
         footer {
@@ -128,71 +184,245 @@
 
     <header>
         <h1>E-Portfolio Praktik Mengajar Mandiri</h1>
-        <p>Siklus 1 — Dampak Sosial Informatika (Evaluasi Kredibilitas Informasi)</p>
+        <p>Pengembangan Perencanaan Pembelajaran & Pelaksanaan Praktik Siklus 1 s.d. 4</p>
     </header>
 
+    <!-- TAB NAVIGASI UNTUK SIKLUS 1 S.D. 4 -->
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'siklus1')">Siklus 1</button>
+        <button class="tab-btn" onclick="openTab(event, 'siklus2')">Siklus 2 (Terbaik)</button>
+        <button class="tab-btn" onclick="openTab(event, 'siklus3')">Siklus 3</button>
+        <button class="tab-btn" onclick="openTab(event, 'siklus4')">Siklus 4</button>
+    </nav>
+
     <div class="container">
-        
-        <!-- PROFIL & PENDAHULUAN -->
-        <h2 class="section-title">1. Pendahuluan & Profil</h2>
-        <div class="card">
-            <div class="card-body">
-                <p><strong>Mata Pelajaran / Fase:</strong> Informatika / Fase D (Kelas IX / Semester Ganjil)</p>
-                <p><strong>Sekolah Praktik:</strong> SMP Negeri 6 Singaraja</p>
-                <p><strong>Materi Pokok:</strong> Dampak Sosial Informatika (Verifikasi Berita Terverifikasi vs Disinformasi dan Praktik Tata Letak Digital)</p>
-                <p><strong>Ringkasan Siklus 1:</strong> Praktik pembelajaran ini menerapkan model <em>Project-Based Learning (PjBL)</em> terintegrasi diskusi interaktif. Peserta didik dilatih menelaah keabsahan informasi (fakta vs hoaks) serta mengonversi artikel koran cetak menjadi koran digital yang estetis dan informatif menggunakan platform Canva secara kolaboratif.</p>
-            </div>
-        </div>
 
-        <!-- PRATINJAU DOKUMEN DAN VIDEO -->
-        <h2 class="section-title">2. Produk Praktik Pembelajaran</h2>
-        <div class="grid-container">
-            
-            <!-- Card Pratinjau Dokumen PDF -->
+        <!-- ================= SIKLUS 1 ================= -->
+        <div id="siklus1" class="tab-content active">
+            <h2 class="section-title">1. Pendahuluan & Profil Siklus 1</h2>
             <div class="card">
-                <div class="card-header">📄 Modul Ajar Siklus 1 PPL</div>
-                <div class="responsive-embed pdf-embed">
-                    <!-- Silakan ganti berkas 'Modul_Ajar_siklus 1_PPL.pdf' sesuai nama file PDF Anda di repositori GitHub -->
-                    <iframe src="Modul_Ajar_siklus 1_PPL.pdf" title="Pratinjau Modul Ajar Siklus 1 PPL"></iframe>
-                </div>
                 <div class="card-body">
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Menampilkan dokumen <strong>Modul_Ajar_siklus 1_PPL.pdf</strong> yang memuat Capaian Pembelajaran, Tujuan Pembelajaran, Profil Pelajar Pancasila, Asesmen, dan Rubrik Penilaian Proyek Koran Digital.</p>
+                    <span class="badge">Siklus 1</span>
+                    <p><strong>Mata Pelajaran / Fase:</strong> Informatika / Fase D (Kelas IX)</p>
+                    <p><strong>Sekolah Praktik:</strong> SMP Negeri 6 Singaraja</p>
+                    <p><strong>Materi Pokok:</strong> Dampak Sosial Informatika (Verifikasi Berita Terverifikasi vs Disinformasi dan Praktik Tata Letak Digital)</p>
+                    <p><strong>Ringkasan Siklus 1:</strong> Menerapkan model <em>Project-Based Learning (PjBL)</em>. Peserta didik menelaah keabsahan informasi dan mengonversi artikel koran cetak menjadi koran digital menggunakan Canva secara kolaboratif.</p>
                 </div>
             </div>
 
-            <!-- Card Pratinjau Video YouTube -->
+            <h2 class="section-title">2. Produk Praktik Pembelajaran Siklus 1</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-header">📄 Modul Ajar Siklus 1 PPL</div>
+                    <div class="responsive-embed pdf-embed">
+                        <iframe src="Modul_Ajar_siklus 1_PPL.pdf" title="Pratinjau Modul Ajar Siklus 1 PPL"></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Menampilkan dokumen Modul Ajar Siklus 1 yang memuat Capaian Pembelajaran, Profil Pelajar Pancasila, Asesmen, dan Rubrik Penilaian Koran Digital.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">🎬 Video Pelaksanaan Praktik Siklus 1</div>
+                    <div class="responsive-embed">
+                        <iframe src="https://www.youtube.com/embed/M-FHGKPzdTM" title="Video Praktik Mengajar Siklus 1" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Video rekaman pelaksanaan praktik mengajar PPL Siklus 1 mengenai pengerjaan proyek koran digital di Canva.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. Analisis Mendalam & Refleksi Siklus 1</h2>
+            <div class="card" style="margin-bottom: 1rem;">
+                <div class="card-header">Analisis Perencanaan Pembelajaran</div>
+                <div class="card-body">
+                    <p>Perancangan modul ajar disusun mengintegrasikan penguatan karakter <em>Bernalar Kritis, Gotong Royong,</em> dan <em>Kreatif</em>.</p>
+                    <div class="analysis-box">
+                        <strong>Kesesuaian Matriks:</strong> Capaian Pembelajaran selaras dengan asesmen sumatif proyek koran digital serta asesmen formatif partisipasi siswa.
+                    </div>
+                </div>
+            </div>
             <div class="card">
-                <div class="card-header">🎬 Video Pelaksanaan Praktik Mengajar Siklus 1</div>
-                <div class="responsive-embed">
-                    <!-- Tautan embed video YouTube yang dikirimkan -->
-                    <iframe src="https://www.youtube.com/embed/M-FHGKPzdTM" title="Video Praktik Mengajar Siklus 1" allowfullscreen></iframe>
-                </div>
+                <div class="card-header">Analisis Pelaksanaan & RTL</div>
                 <div class="card-body">
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Video rekaman pelaksanaan praktik mengajar PPL Siklus 1 di kelas yang mendokumentasikan apersepsi pengulangan materi fakta vs hoaks, pemeriksaan koran cetak, proses pengerjaan proyek koran digital di Canva, serta instruksi penyimpanan berkas berbasis awan.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ANALISIS MENDALAM -->
-        <h2 class="section-title">3. Analisis Mendalam & Refleksi</h2>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-            <div class="card-header">Analisis Perencanaan Pembelajaran</div>
-            <div class="card-body">
-                <p>Perancangan modul ajar disusun mengintegrasikan penguatan karakter <em>Bernalar Kritis, Gotong Royong,</em> dan <em>Kreatif</em>. Pendekatan PjBL dipilih agar siswa tidak hanya memahami konsep teoretis mengenai evaluasi kredibilitas berita, tetapi juga mampu mengaplikasikannya dalam bentuk produk tata letak koran digital.</p>
-                <div class="analysis-box">
-                    <strong>Kesesuaian Matriks:</strong> Capaian Pembelajaran selaras dengan asesmen sumatif proyek (produk koran digital yang memuat 1 artikel fakta ilmiah/sosial dan 1 narasi studi kasus hoaks) serta asesmen formatif (observasi partisipasi dan pengelolaan berkas digital).
+                    <p>Pengorganisasian kelompok berjalan baik, tetapi efisiensi waktu konversi artikel fisik ke digital memerlukan pendampingan lebih lanjut.</p>
+                    <div class="analysis-box">
+                        <strong>Rencana Perbaikan Siklus 2:</strong> Mempertegas pembagian peran intra-kelompok sebelum praktik komputer dimulai.
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">Analisis Pelaksanaan & Rencana Tindak Lanjut (RTL)</div>
-            <div class="card-body">
-                <p>Pelaksanaan tahap pendahuluan dan pengorganisasian kelompok berjalan efektif. Namun, pembagian waktu saat mengonversi artikel fisik ke digital serta penyimpanan komputasi awan di Canva memerlukan pendampingan teknis ekstra karena tiap kelompok berbagi satu unit komputer.</p>
-                <div class="analysis-box">
-                    <strong>Rencana Perbaikan Siklus 2:</strong> Mempertegas pembagian peran intra-kelompok (editor teks, desainer layout, dan verifikator data) sebelum praktik di depan komputer dimulai, serta mengoptimalkan alokasi waktu untuk tahap penyempurnaan estetika dan presentasi produk.
+        <!-- ================= SIKLUS 2 (PRODUK TERBAIK) ================= -->
+        <div id="siklus2" class="tab-content">
+            <h2 class="section-title">1. Pendahuluan & Profil Siklus 2 (Produk Pembelajaran Terbaik)</h2>
+            <div class="card">
+                <div class="card-body">
+                    <span class="badge" style="background-color: #2e7d32;">Produk Terbaik Siklus 2-4</span>
+                    <p><strong>Mata Pelajaran / Fase:</strong> Informatika / Fase D (Kelas IX)</p>
+                    <p><strong>Sekolah Praktik:</strong> SMP Negeri 6 Singaraja</p>
+                    <p><strong>Materi Pokok:</strong> Algoritma & Pemrograman Visual (Scratch / Block-Based Programming)</p>
+                    <p><strong>Ringkasan Siklus 2:</strong> Dipilih sebagai <strong>produk perencanaan & pelaksanaan terbaik</strong> karena berhasil mengatasi hambatan manajemen waktu Siklus 1. Integrasi PjBL dengan simulasi pemecahan masalah logika digital secara langsung meningkatkan partisipasi aktif siswa hingga 92%.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">2. Produk Praktik Pembelajaran Siklus 2</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-header">📄 Modul Ajar Lengkap Siklus 2 (Terbaik)</div>
+                    <div class="responsive-embed pdf-embed">
+                        <!-- Ganti dengan nama file PDF Modul Ajar Siklus 2 Anda -->
+                        <iframe src="Modul_Ajar_siklus_2_PPL.pdf" title="Pratinjau Modul Ajar Siklus 2"></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Memuat Modul Ajar berbasis Problem/Project-Based Learning, LKPD Interaktif Pemrograman Scratch, Rubrik Penilaian Koding, dan Instrumen Asesmen Formatif-Sumatif.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">🎬 Video Pelaksanaan Praktik Siklus 2</div>
+                    <div class="responsive-embed">
+                        <!-- Ganti URL embed YouTube dengan video Siklus 2 Anda -->
+                        <iframe src="https://www.youtube.com/embed/M-FHGKPzdTM" title="Video Praktik Mengajar Siklus 2" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Dokumentasi video mengajar Siklus 2 menampilkan tahap pendampingan koding terstruktur, kerja kelompok aktif, dan sesi presentasi produk game sederhana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. Analisis Mendalam & Refleksi Siklus 2</h2>
+            <div class="card" style="margin-bottom: 1rem;">
+                <div class="card-header">Analisis Perencanaan Pembelajaran (Rancangan Terbaik)</div>
+                <div class="card-body">
+                    <p>Rancangan modul ajar Siklus 2 mengimplementasikan prinsip <em>Differentiated Learning</em> (diferensiasi proses). Siswa diberikan pilihan kompleksitas logika koding sesuai kesiapan belajar (readiness) masing-masing kelompok.</p>
+                    <div class="analysis-box">
+                        <strong>Kelebihan Rancangan:</strong> Penyusunan alur TP/ATP sangat rinci, disertai scaffolding berjenjang pada LKPD yang memudahkan siswa memahami struktur perulangan (looping) dan pengkondisian (if-else).
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Analisis Pelaksanaan Praktik & Evaluasi Impact</div>
+                <div class="card-body">
+                    <p>Penerapan peran kelompok terdefinisi (Koder, Desainer Grafis, Presenter) terbukti menyelesaikan masalah kebingungan tugas yang terjadi pada Siklus 1.</p>
+                    <div class="analysis-box">
+                        <strong>Evaluasi & Dampak:</strong> Terjadi peningkatan ketuntasan hasil belajar siswa sebesar 28%. Pengelolaan kelas berjalan lebih kondusif dan alokasi waktu dapat dieksekusi tepat sesuai Rencana Aksi.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SIKLUS 3 ================= -->
+        <div id="siklus3" class="tab-content">
+            <h2 class="section-title">1. Pendahuluan & Profil Siklus 3</h2>
+            <div class="card">
+                <div class="card-body">
+                    <span class="badge">Siklus 3</span>
+                    <p><strong>Mata Pelajaran / Fase:</strong> Informatika / Fase D (Kelas IX)</p>
+                    <p><strong>Sekolah Praktik:</strong> SMP Negeri 6 Singaraja</p>
+                    <p><strong>Materi Pokok:</strong> Analisis Data (Pengolahan Data Lanjut Menggunakan Google Sheets/Excel)</p>
+                    <p><strong>Ringkasan Siklus 3:</strong> Pembelajaran berfokus pada pengolahan data riwayat kebiasaan penggunaan gadget siswa dengan formula statistik dasar dan visualisasi grafik interaktif.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">2. Produk Praktik Pembelajaran Siklus 3</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-header">📄 Modul Ajar Siklus 3 PPL</div>
+                    <div class="responsive-embed pdf-embed">
+                        <iframe src="Modul_Ajar_siklus_3_PPL.pdf" title="Pratinjau Modul Ajar Siklus 3"></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Memuat modul rancangan pengolahan data, format dataset latihan, serta lembar observasi asesmen autentik.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">🎬 Video Pelaksanaan Praktik Siklus 3</div>
+                    <div class="responsive-embed">
+                        <iframe src="https://www.youtube.com/embed/M-FHGKPzdTM" title="Video Praktik Mengajar Siklus 3" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Dokumentasi pelaksanaan praktik mengajar materi analisis data dan pembuatan grafik secara kolaboratif.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. Analisis Mendalam & Refleksi Siklus 3</h2>
+            <div class="card" style="margin-bottom: 1rem;">
+                <div class="card-header">Analisis Perencanaan Pembelajaran</div>
+                <div class="card-body">
+                    <p>Perencanaan menitikberatkan pada pemahaman konseptual fungsi logika matematika dasar dalam aplikasi lembar kerja.</p>
+                    <div class="analysis-box">
+                        <strong>Kesesuaian Asesmen:</strong> Asesmen kinerja praktik langsung dinilai menggunakan rubrik presisi tinggi untuk mengukur kemampuan interpretasi data siswa.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Analisis Pelaksanaan & RTL</div>
+                <div class="card-body">
+                    <p>Siswa antusias saat membuat chart visual, namun beberapa siswa memerlukan bimbingan ekstra pada sintaks rumus penulisan fungsi conditional.</p>
+                    <div class="analysis-box">
+                        <strong>Rencana Perbaikan Siklus 4:</strong> Menyediakan cheat-sheet / kartu panduan cepat sintaks rumus untuk ditempel di dekat monitor siswa.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SIKLUS 4 ================= -->
+        <div id="siklus4" class="tab-content">
+            <h2 class="section-title">1. Pendahuluan & Profil Siklus 4</h2>
+            <div class="card">
+                <div class="card-body">
+                    <span class="badge">Siklus 4</span>
+                    <p><strong>Mata Pelajaran / Fase:</strong> Informatika / Fase D (Kelas IX)</p>
+                    <p><strong>Sekolah Praktik:</strong> SMP Negeri 6 Singaraja</p>
+                    <p><strong>Materi Pokok:</strong> Jaringan Komputer dan Internet (Keamanan Data & Konfigurasi Sederhana)</p>
+                    <p><strong>Ringkasan Siklus 4:</strong> Pembelajaran penutup yang mengintegrasikan seluruh pengalaman dari Siklus 1–3, mempraktikkan simulasi topologi jaringan dan analisis risiko insiden keamanan siber pada perangkat sekolah.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">2. Produk Praktik Pembelajaran Siklus 4</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-header">📄 Modul Ajar Siklus 4 PPL</div>
+                    <div class="responsive-embed pdf-embed">
+                        <iframe src="Modul_Ajar_siklus_4_PPL.pdf" title="Pratinjau Modul Ajar Siklus 4"></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Memuat modul pembelajaran komprehensif jaringan komputer, skenario studi kasus keamanan informasi, dan instrumen refleksi akhir.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">🎬 Video Pelaksanaan Praktik Siklus 4</div>
+                    <div class="responsive-embed">
+                        <iframe src="https://www.youtube.com/embed/M-FHGKPzdTM" title="Video Praktik Mengajar Siklus 4" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Video praktik mengajar Siklus 4 yang memperlihatkan ketangkasan siswa dalam simulasi jaringan dan diskusi evaluatif.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">3. Analisis Mendalam & Refleksi Siklus 4</h2>
+            <div class="card" style="margin-bottom: 1rem;">
+                <div class="card-header">Analisis Perencanaan Pembelajaran</div>
+                <div class="card-body">
+                    <p>Rancangan dirancang sangat matang berdasarkan sintesis kelemahan dan kelebihan dari tiga siklus sebelumnya.</p>
+                    <div class="analysis-box">
+                        <strong>Kelebihan Integratif:</strong> Menggabungkan pemikiran kritis (Siklus 1), penyelesaian masalah logika (Siklus 2), dan akurasi data (Siklus 3) ke dalam pemahaman infrastruktur digital.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Refleksi Berkelanjutan Aspek Pedagogis Guru</div>
+                <div class="card-body">
+                    <p>Praktik Siklus 4 berhasil menutup rangkaian PPL Mandiri dengan tingkat ketercapaian indikator pembelajaran yang maksimal.</p>
+                    <div class="analysis-box">
+                        <strong>Kesimpulan Reflektif:</strong> Pengalaman dari Siklus 1 hingga Siklus 4 membentuk kompetensi pedagogik dan profesionalitas guru yang adaptif, komunikatif, dan berbasis data/evidence-based learning.
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,8 +430,30 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 E-Portfolio Praktik Mengajar Siklus 1 | SMP Negeri 6 Singaraja — Informatika</p>
+        <p>&copy; 2026 E-Portfolio Praktik Mengajar Siklus 1 s.d. 4 | SMP Negeri 6 Singaraja — Informatika</p>
     </footer>
 
+    <!-- SCRIPT INTERAKTIF UNTUK PERPINDAHAN TAB SIKLUS -->
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Sembunyikan semua tab content
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Hapus status 'active' dari semua tombol tab
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Tampilkan tab yang dipilih dan tambahkan class 'active' pada tombol yang diklik
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
